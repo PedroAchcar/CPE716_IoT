@@ -3,19 +3,19 @@
 
 ## **Description**
 
-This project aims to develop a gas leakage monitoring system using the **ESP32** and a **potentiometer** as a simulation. The system monitors the potentiometer’s reading and activates **status LEDs** (green, blue, red) according to the gas levels. Additionally, the project sends **Telegram notifications** when the level reaches moderate or critical values.
+This project aims to develop a gas leakage monitoring system using the **ESP32** and a **MQ-2 gas sensor**. The system monitors the sensor's reading and activates **status LEDs** (green, blue, red) according to the gas levels. Additionally, the project sends **Telegram notifications** when the level reaches moderate or critical values.
 
 ## **Objective**
 
 The objective of this project is to demonstrate the creation of a simple IoT system for gas leakage monitoring. Using the **ESP32** as the microcontroller, the system can:
-- Monitor the potentiometer’s value simulating gas concentration.
+- Monitor the **MQ-2 sensor's** value simulating gas concentration.
 - Activate LEDs to indicate leakage status: **green** (normal), **blue** (attention), and **red** (critical).
 - Send **Telegram notifications** to the user’s phone when a critical level is detected.
 
 ## **Components Used**
 
 - **ESP32** (microcontroller)
-- **Potentiometer** (simulating the gas sensor)
+- **MQ-2 Gas Sensor** (detects gases like GLP, butane, alcohol, smoke, etc.)
 - **3 LEDs** (green, blue, red)
 - **220Ω Resistors** (to limit current to the LEDs)
 - **Jumper wires**
@@ -31,9 +31,9 @@ The objective of this project is to demonstrate the creation of a simple IoT sys
 ## **How It Works**
 
 1. **ESP32 connects to Wi-Fi**: The ESP32 connects to the Wi-Fi network defined in the code.
-2. **Potentiometer reading**: The potentiometer value is read from GPIO 34 and mapped between 0 and 4095.
+2. **MQ-2 Sensor reading**: The MQ-2 gas sensor value is read from GPIO 34 and mapped between 0 and 4095.
 3. **Status LEDs**:
-   - **Green LED**: Lit when the potentiometer value is below the **1000** threshold.
+   - **Green LED**: Lit when the sensor value is below the **1000** threshold.
    - **Blue LED**: Lit when the value is between **1000 and 2500**, indicating a **moderate level**.
    - **Red LED**: Lit when the value exceeds **2500**, indicating a **critical level**.
 4. **Telegram notification**:
@@ -71,7 +71,7 @@ String chatID = "YOUR_CHAT_ID";
 
 3. **Add Widgets in the Blynk App**
    - Open your Blynk project.
-   - Add a **Gauge** or **Value Display** widget to monitor the potentiometer's value in real-time.
+   - Add a **Gauge** or **Value Display** widget to monitor the **MQ-2 sensor’s** value in real-time.
    - Link the widget to **Virtual Pin V1** (or another pin you assign).
 
 4. **Configure the Code**
@@ -80,8 +80,8 @@ String chatID = "YOUR_CHAT_ID";
 ## **How to Use**
 
 1. **Upload the code to the ESP32** using Arduino IDE.
-2. **Open the Serial Monitor** to see the potentiometer readings in real-time.
-3. **Watch the LEDs**: the system will change from green to blue or red based on the potentiometer value.
+2. **Open the Serial Monitor** to see the **MQ-2 sensor** readings in real-time.
+3. **Watch the LEDs**: the system will change from green to blue or red based on the sensor value.
 4. **Receive notifications on Telegram** when a critical or moderate level is detected.
 
 ## **Conclusion**
